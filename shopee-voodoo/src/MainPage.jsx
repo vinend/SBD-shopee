@@ -60,7 +60,13 @@ const MainPage = ({ animationStarted }) => {
   }, []);
   
   return (
-    <div className="relative min-h-screen bg-[#F48F7B] text-white overflow-hidden">
+    <div className="relative min-h-screen bg-[#EE4D2D] text-white overflow-hidden">
+      {/* Add subtle background effect if desired */}
+      <div className="fixed inset-0 z-2 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-[#EE4D2D]/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#EE4D2D]/20"></div>
+      </div>
+      
       {/* Navbar Shopee */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <ShopeeNavbar />
@@ -112,13 +118,13 @@ const MainPage = ({ animationStarted }) => {
         />
       </div>
 
-      {/* Content container - Highest z-index, shifted slightly right from center */}
-      <div className="relative z-20 pt-24 px-6 flex flex-col justify-center items-center min-h-screen max-w-7xl mx-auto">
+      {/* Content container - Highest z-index, shifted slightly right from center - HOME SECTION */}
+      <div id="home-section" className="relative z-20 pt-24 px-6 flex flex-col justify-center items-center min-h-screen max-w-7xl mx-auto">
         <div className="mt-10 text-center md:pr-0 md:pl-12 lg:pl-16">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight opacity-0 animate-drop-in text-justify"
               style={{ animationDelay: textAnimationDelay, animationFillMode: 'forwards' }}>
             BELANJA BINGUNG?<br />
-            DI <span className="text-[#EE4D2D] font-semibold">Shopee</span> AJA
+            DI <span className="text-[#F48F7B] font-semibold">Shopee</span> AJA
           </h1>
 
           <p className="text-white text-base sm:text-lg md:text-xl max-w-3xl mx-auto mt-6 leading-relaxed opacity-0 animate-drop-in text-justify"
@@ -129,17 +135,18 @@ const MainPage = ({ animationStarted }) => {
       </div>
       
       {/* Additional decorative elements */}
-      <div className="absolute bottom-10 right-10 z-5 w-24 h-24 bg-[#EE4D2D] rounded-full opacity-0 animate-float-in-right"
+      <div className="absolute bottom-10 right-10 z-5 w-24 h-24 bg-[#F48F7B] rounded-full opacity-0 animate-float-in-right"
            style={{ animationDelay: animationStarted ? '4.2s' : '999s', animationFillMode: 'forwards' }}>
       </div>
-      <div className="absolute top-32 left-32 z-5 w-16 h-16 bg-[#EE4D2D] rounded-full opacity-0 animate-float-in-left"
+      <div className="absolute top-32 left-32 z-5 w-16 h-16 bg-[#F48F7B] rounded-full opacity-0 animate-float-in-left"
            style={{ animationDelay: animationStarted ? '4.5s' : '999s', animationFillMode: 'forwards' }}>
       </div>
       
-      {/* KENAPA? Section with scroll animations */}
+      {/* KENAPA? Section with scroll animations - WHY US SECTION */}
       <div 
+        id="kenapa-section"
         ref={kenapaSection}
-        className="relative min-h-screen py-24 px-6 md:px-12 lg:px-24 bg-[#F48F7B] overflow-hidden z-10"
+        className="relative min-h-screen py-24 px-6 md:px-12 lg:px-24 bg-[#EE4D2D] overflow-hidden z-10"
       >
         {/* Background decoration specific to this section */}
         <div className="absolute inset-0 z-1 pointer-events-none">
@@ -171,7 +178,7 @@ const MainPage = ({ animationStarted }) => {
         {/* Content for KENAPA? section */}
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center justify-center h-full">
           <h2 
-            className={`text-6xl md:text-7xl lg:text-8xl font-extrabold text-[#EE4D2D] mb-12 transition-all duration-700 transform ${
+            className={`text-6xl md:text-7xl lg:text-8xl font-extrabold text-[#F48F7B] mb-12 transition-all duration-700 transform ${
               isKenapaVisible ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0'
             }`}
           >
@@ -221,10 +228,11 @@ const MainPage = ({ animationStarted }) => {
         </div>
       </div>
       
-      {/* OUR TEAM Section with scroll animations */}
+      {/* OUR TEAM Section with scroll animations - TEAM SECTION */}
       <div 
+        id="team-section"
         ref={teamSection}
-        className="relative min-h-screen py-24 px-6 md:px-12 lg:px-24 bg-[#F48F7B] overflow-hidden z-10"
+        className="relative min-h-screen py-24 px-6 md:px-12 lg:px-24 bg-[#EE4D2D] overflow-hidden z-10"
       >
         {/* Team background image with overlay */}
         <div className="absolute inset-0 z-1 pointer-events-none">
@@ -239,7 +247,7 @@ const MainPage = ({ animationStarted }) => {
         {/* Content for OUR TEAM section */}
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center justify-center h-full">
           <h2 
-            className={`text-6xl md:text-7xl lg:text-8xl font-extrabold text-[#EE4D2D] mb-12 transition-all duration-700 transform ${
+            className={`text-6xl md:text-7xl lg:text-8xl font-extrabold text-[#F48F7B] mb-12 transition-all duration-700 transform ${
               isTeamVisible ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0'
             }`}
             style={{ textShadow: '0 4px 8px rgba(0,0,0,0.3)' }}
@@ -290,9 +298,6 @@ const MainPage = ({ animationStarted }) => {
                   src={ReadMoreButton} 
                   alt="Read More"
                   className="w-40 transition-transform duration-700 ease-in-out"
-                  style={{ 
-                    transform: showTeamDetails ? 'rotate(360deg)' : 'rotate(0deg)'
-                  }}
                 />
                 <span className="absolute inset-0 bg-white/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 -z-10"></span>
               </button>
@@ -301,8 +306,56 @@ const MainPage = ({ animationStarted }) => {
         </div>
       </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Placeholder for Gallery section */}
+      <div id="gallery-section" className="relative min-h-screen py-24 px-6 md:px-12 lg:px-24 bg-[#EE4D2D] overflow-hidden z-10">
+        <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center justify-center h-full">
+          <h2 className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-[#F48F7B] mb-12">
+            GALLERY
+          </h2>
+          <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/20 max-w-4xl w-full">
+            <p className="text-white text-justify text-lg">
+              Gallery section will display Shopee's products and promotional images here. This section is currently under development.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Placeholder for Contact Us section */}
+      <div id="contact-section" className="relative min-h-screen py-24 px-6 md:px-12 lg:px-24 bg-[#EE4D2D] overflow-hidden z-10">
+        <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center justify-center h-full">
+          <h2 className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-[#F48F7B] mb-12">
+            CONTACT US
+          </h2>
+          <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/20 max-w-4xl w-full">
+            <p className="text-white text-justify text-lg mb-6">
+              Have questions or feedback about Shopee? We'd love to hear from you! Reach out to us through any of the methods below.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
+                <ul className="space-y-2 text-white">
+                  <li>Email: support@shopee.co.id</li>
+                  <li>Phone: +62 21 5080 7888</li>
+                  <li>Hours: Monday-Friday, 9am-6pm</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-4">Visit Us</h3>
+                <p className="text-white text-justify">
+                  Shopee Tower, Capital Place Level 39<br />
+                  Jalan Jenderal Gatot Subroto Kav. 18<br />
+                  Jakarta 12710, Indonesia
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer with z-index to ensure it's above everything */}
+      <div className="relative z-[100]">
+        <Footer />
+      </div>
     </div>
   );
 };
