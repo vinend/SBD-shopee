@@ -134,14 +134,6 @@ const MainPage = ({ animationStarted }) => {
         </div>
       </div>
       
-      {/* Additional decorative elements */}
-      <div className="absolute bottom-10 right-10 z-5 w-24 h-24 bg-[#F48F7B] rounded-full opacity-0 animate-float-in-right"
-           style={{ animationDelay: animationStarted ? '4.2s' : '999s', animationFillMode: 'forwards' }}>
-      </div>
-      <div className="absolute top-32 left-32 z-5 w-16 h-16 bg-[#F48F7B] rounded-full opacity-0 animate-float-in-left"
-           style={{ animationDelay: animationStarted ? '4.5s' : '999s', animationFillMode: 'forwards' }}>
-      </div>
-      
       {/* KENAPA? Section with scroll animations - WHY US SECTION */}
       <div 
         id="kenapa-section"
