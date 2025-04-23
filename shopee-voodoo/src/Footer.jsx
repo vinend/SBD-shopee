@@ -9,8 +9,17 @@ import ShopeeLogo from './assets/Shopee.svg';
 
 const Footer = () => {
   const [showFooter, setShowFooter] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile(); // Initial check
+    window.addEventListener('resize', checkMobile);
+    
     // Function to handle scroll event
     const handleScroll = () => {
       // Get total height of page and window
@@ -33,6 +42,7 @@ const Footer = () => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 

@@ -73,5 +73,15 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-stroke-white': {
+          '-webkit-text-stroke': '1px white',
+          'text-stroke': '1px white'
+        }
+      }
+      addUtilities(newUtilities)
+    }
+  ],
 }

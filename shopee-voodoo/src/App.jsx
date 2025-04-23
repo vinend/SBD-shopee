@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import LandingPage from './LandingPage';
 import MainPage from './MainPage';
@@ -6,19 +6,47 @@ import MainPage from './MainPage';
 function App() {
   const [showLanding, setShowLanding] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mainPageOpacity, setMainPageOpacity] = useState(0); // Add opacity state for MainPage
+  
+  useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile(); // Initial check
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
   
   const handleDiveIn = () => {
     setIsAnimating(true);
-    // Increased timeout to match longer animation duration
+    
+    // Start fading in the main page before landing page is completely gone
+    setTimeout(() => {
+      setMainPageOpacity(1);
+    }, isMobile ? 800 : 1500);
+    
+    // Shortened animation time for mobile
     setTimeout(() => {
       setShowLanding(false);
-    }, 2500); // Keep at 2500ms to match the orange expand animation
+    }, isMobile ? 1500 : 2500); // Shorter timing for mobile devices
   };
   
   return (
     <>
       {/* Always render MainPage, but hidden when showing landing */}
-      <div className={showLanding ? "fixed inset-0 z-0" : ""}>
+      <div 
+        className={showLanding ? "fixed inset-0 z-0" : ""}
+        style={{ 
+          opacity: showLanding ? mainPageOpacity : 1,
+          transition: "opacity 0.8s ease-in-out" 
+        }}
+      >
         <MainPage animationStarted={isAnimating} />
       </div>
       
